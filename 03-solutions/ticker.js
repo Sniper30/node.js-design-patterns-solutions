@@ -1,4 +1,3 @@
-import { log } from 'console';
 import {EventEmitter} from 'events'
 let event = new EventEmitter();
 let count = 0;
@@ -11,7 +10,7 @@ function Ticker(max,cb){
         
             process.nextTick(()=>{
             cb(error)
-            event.emit('error',"el rrorrr "+date)
+            event.emit('error',"the error time "+date)
         })
     }
     process.nextTick(()=>event.emit('tick','tick'));
@@ -28,7 +27,7 @@ function Ticker(max,cb){
 }
 
 Ticker(1000,(err,value)=>{
-    if(err) return console.log('hubo un error' + err)
+    if(err) return console.log('error: ' + err)
     console.log(value)
 })
-.on('tick',tick => log(tick))
+.on('tick',tick => console.log(tick))
