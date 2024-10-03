@@ -1,5 +1,4 @@
 import fs from "fs";
-let count = 0;
 let txt = "";
 function concatFunction(dest, cb, ...files) {
   let file = String(files.shift());
