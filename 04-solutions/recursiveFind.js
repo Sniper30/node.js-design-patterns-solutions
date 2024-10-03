@@ -10,7 +10,6 @@ function recursiveFind(dir, keyword, cb) {
         readFile(dir, keyword, cb)
     })
     while (tasks.length) {
-        if (tasks.length === 0) console.log('done')
         let task = tasks.shift();
         task()
     }
@@ -20,7 +19,7 @@ function searchKeyword(keyword, cb) {
     let coincidence = []
     arrayToSearch.forEach(file => {
         fs.readFile(file, 'utf8', (err, data) => {
-            if(err) cb(err)
+            if (err) cb(err)
             if (data.match(keyword)) coincidence.push({ file, data })
             arrayToSearch.shift();
             if (arrayToSearch.length === 0) return cb(null, coincidence)
@@ -54,6 +53,6 @@ let pathToSearch = String(process.argv[2])
 let keyword = String(process.argv[3])
 recursiveFind(__diname + pathToSearch, keyword, (err, coincidence) => {
     if (err) return console.log('error', err);
-    if(coincidence.length > 0) return console.log('I found', coincidence)
+    if (coincidence.length > 0) return console.log('I found', coincidence)
     else return console.log('Nothing was found', coincidence)
 })
